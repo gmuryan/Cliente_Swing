@@ -27,7 +27,7 @@ public class AltaPrendasPantalla extends javax.swing.JFrame  {
 	private PrendaDelegate controlador;
 	private ArrayList<JLabel> labels = new ArrayList<JLabel>();
 	private ArrayList<JTextField> texts = new ArrayList<JTextField>();
-	private String[] nombres = {"Codigo:", "Descripcion:"};
+	private String[] nombres = {"Codigo:", "Descripcion:", "Marcado:", "Corte:", "Habilitado:", "Costura:", "Estampado", "Acabado:", "Planchado:", "Empacado:"};
 
 	
 	public AltaPrendasPantalla() {
@@ -85,6 +85,62 @@ public class AltaPrendasPantalla extends javax.swing.JFrame  {
 						error = true;
 					}
 					
+					if (!isInteger(texts.get(2).getText())){
+						texto = "Marcado deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(3).getText())){
+						texto = "Corte deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(4).getText())){
+						texto = "Habilitado deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(5).getText())){
+						texto = "Costura deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(6).getText())){
+						texto = "Estampado deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(7).getText())){
+						texto = "Acabado deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(8).getText())){
+						texto = "Planchado deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
+					if (!isInteger(texts.get(9).getText())){
+						texto = "Empacado deberia ser un numero.";
+
+						mensaje.setForeground(Color.RED);
+						error = true;
+					}
+					
 					if (!error){
 						try {
 							PrendaDTO prena = controlador.solicitarPrendaView(Long.parseLong(texts.get(0).getText()));
@@ -103,6 +159,41 @@ public class AltaPrendasPantalla extends javax.swing.JFrame  {
 //							}
 //						}
 }
+						} catch (NumberFormatException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+					mensaje.setText(texto);
+					
+				}
+					mensaje.setText(texto);
+					
+				}
+			});
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    } catch(NullPointerException e) {
+	        return false;
+	    }
+	    return true;
+	}
+
+}
+
 						} catch (NumberFormatException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
