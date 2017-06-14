@@ -75,10 +75,10 @@ public class AgregarVariedadPrendaPantalla extends javax.swing.JFrame {
 //		
 //		final JComboBox variComboBox = new JComboBox(variedadesArray);
 //		getContentPane().add(comboBox);
-//		comboBox.setBounds(80, 10, 210, 30);
+//		comboBox.setBounds(80, 40, 210, 30);
 //		JLabel variLabel = new JLabel("Variedades:");
 //		getContentPane().add(proveedorLabel);
-//		proveedorLabel.setBounds(10, 10, 120, 30);
+//		proveedorLabel.setBounds(10, 40, 120, 30);
 
 
 		JLabel precioLabel = new JLabel();
