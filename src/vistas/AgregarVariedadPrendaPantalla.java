@@ -17,6 +17,7 @@ import javax.swing.WindowConstants;
 import DTO.InsumoDTO;
 import DTO.PrendaDTO;
 import DTO.ProveedorDTO;
+import DTO.VariedadPrendaDTO;
 import businessDelegates.InsumoDelegate;
 import businessDelegates.PrendaDelegate;
 import businessDelegates.ProveedorDelegate;
@@ -27,14 +28,18 @@ public class AgregarVariedadPrendaPantalla extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+//	private VariedadDelegate variedadBD;
 	private PrendaDelegate prendaBD;
 	private List<PrendaDTO> prendas;
+//	private List<VariedadPrendaDTO> variedades;
 
 	public AgregarVariedadPrendaPantalla() {
 		super();
-		prendaBD = PrendaDelegate.GetInstancia();
 		try {
+//			variedadBD = VariedadDelegate.GetInstancia();
+			prendaBD = PrendaDelegate.GetInstancia();
 			prendas = prendaBD.getAllPrendas();
+//			variedades = variedadBD.getAllVariedades();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +51,7 @@ public class AgregarVariedadPrendaPantalla extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
-		setTitle("Asociar Insumos a Proveedores");
+		setTitle("Asociar Variedad a Prenda");
 
 		PrendaDTO prendasArray[] = new PrendaDTO[prendas.size()];
 		int j = 0;
@@ -54,12 +59,26 @@ public class AgregarVariedadPrendaPantalla extends javax.swing.JFrame {
 			prendasArray[j] = p;
 			j++;
 		}
-		JComboBox comboBox = new JComboBox(prendasArray);
+		final JComboBox comboBox = new JComboBox(prendasArray);
 		getContentPane().add(comboBox);
 		comboBox.setBounds(80, 10, 210, 30);
 		JLabel proveedorLabel = new JLabel("Prendas:");
 		getContentPane().add(proveedorLabel);
 		proveedorLabel.setBounds(10, 10, 120, 30);
+		
+//		VariedadPrendaDTO variedadesArray[] = new VariedadPrendaDTO()[variedades.size()];
+//		int j = 0;
+//		for (VariedadPrendaDTO v : variedades) {
+//			variedadesArray[j] = v;
+//			j++;
+//		}
+//		
+//		final JComboBox variComboBox = new JComboBox(variedadesArray);
+//		getContentPane().add(comboBox);
+//		comboBox.setBounds(80, 10, 210, 30);
+//		JLabel variLabel = new JLabel("Variedades:");
+//		getContentPane().add(proveedorLabel);
+//		proveedorLabel.setBounds(10, 10, 120, 30);
 
 
 		JLabel precioLabel = new JLabel();
@@ -67,7 +86,7 @@ public class AgregarVariedadPrendaPantalla extends javax.swing.JFrame {
 		precioLabel.setText("Precio:");
 		precioLabel.setBounds(10, 70, 120, 30);
 
-		JTextField precio = new JTextField();
+		final JTextField precio = new JTextField();
 		getContentPane().add(precio);
 		precio.setBounds(80, 70, 210, 30);
 		
@@ -81,10 +100,11 @@ public class AgregarVariedadPrendaPantalla extends javax.swing.JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+//				VariedadPrendaDTO variedad = (VariedadPrendaDTO) variComboBox.getSelectedItem();
 				ProveedorDTO proveedor = (ProveedorDTO) comboBox.getSelectedItem();
 				Float precioFloat = Float.parseFloat(precio.getText());
 				/*try {
-					prendaBD.
+					prendaBD.asociarVariedad ();
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
